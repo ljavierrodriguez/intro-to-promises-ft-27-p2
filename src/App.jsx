@@ -111,12 +111,10 @@ const App = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         //console.log(note)
-        const raw = JSON.stringify(note)
         //console.log(raw)
-
         if (editing) {
+            const raw = JSON.stringify(note)
             const url = `${baseURL}/notes/${note.id}`
             const options = {
                 method: 'PUT',
@@ -128,6 +126,8 @@ const App = () => {
             editNote(url, options)
             setEditing(false)
         } else {
+            delete note.id
+            const raw = JSON.stringify(note)
             const url = `${baseURL}/notes`
             const options = {
                 method: 'POST',
